@@ -1,1 +1,34 @@
-<p>config-side-bar works!</p>
+<div
+  id="mySidebar"
+  [ngStyle]="{
+    width: user ? '350px' : '0px'
+  }"
+  class="sidebar"
+>
+  <div class="title">
+    <span><img src="assets/images/config-icon.png" /></span>
+    <span>Configuration</span>
+  </div>
+
+  <form [formGroup]="userForm">
+    <label>Nom</label>
+    <input
+      formControlName="nom"
+      (change)="createOrUpdateUser()"
+      class="form-control"
+    />
+    <label>Prénom</label>
+    <input
+      formControlName="prenom"
+      class="form-control"
+      (change)="createOrUpdateUser()"
+    />
+    <label>Nombre d'enfants</label>
+    <input
+      formControlName="nombre_enfants"
+      class="form-control"
+      type="number"
+      [readOnly]="!allowChangeNumber"
+    />
+  </form>
+</div>

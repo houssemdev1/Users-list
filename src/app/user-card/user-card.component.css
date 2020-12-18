@@ -1,0 +1,27 @@
+.card,
+.selected-card {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  min-height: 310px;
+}
+.selected-card {
+  border: 2px solid green;
+}
+.empty-card {
+  text-align: center;
+  font-size: 200px;
+  color: rgba(0, 0, 0, 0.125);
+  font-weight: 100;
+  line-height: normal;
+  border: 2px dashed rgba(0, 0, 0, 0.125);
+  cursor: pointer;
+}
+label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+img {
+  width: 30px;
+  height: 30px;
+}

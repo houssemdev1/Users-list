@@ -1,5 +1,43 @@
-<p>app works!</p>
-
-<app-config-side-bar></app-config-side-bar>
-
-<app-user-card></app-user-card>
+<app-config-side-bar
+  #sideBarRef
+  [user]="currentUser"
+  [allowChangeNumber]="allowAddBtn"
+  (userInfos)="createOrUpdateUser($event)"
+></app-config-side-bar>
+<div
+  class="container mt-5"
+  [ngStyle]="{
+    'padding-left': currentUser ? '350px' : '0px'
+  }"
+>
+  <div class="d-flex justify-content-between">
+    <button
+      class="btn btn-success"
+      (click)="addNewUser('secondStep')"
+      [disabled]="!allowAddBtn"
+    >
+      + ajouter
+    </button>
+    <button class="btn btn-success" (click)="LoadListUsersFromJson()">
+      <span><img src="assets/images/renitialize-icon.png" /></span>
+      <span>Rénitialiser</span>
+    </button>
+  </div>
+  <div class="row">
+    <div
+      class="col-xl-4 col-lg-6"
+      *ngFor="let user of listUsers; let i = index"
+      (click)="createOrUpdateUser(user)"
+    >
+      <app-user-card
+        (userInfos)="createOrUpdateUser($event)"
+        (deletedUser)="removeUser($event)"
+        [user]="user"
+        [isSelected]="user === currentUser"
+      ></app-user-card>
+    </div>
+    <div class="col-lg-4 col-md-6" (click)="addNewUser()">
+      <app-user-card [isEmpty]="true"></app-user-card>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,29 @@
-<p>user-card works!</p>
+<div
+  class="card p-3 mt-3 mb-3"
+  [ngClass]="{
+    card: !isSelected,
+    'selected-card': isSelected,
+    'empty-card': isEmpty
+  }"
+>
+  <div class="d-flex justify-content-end" *ngIf="!isEmpty">
+    <button class="btn p-0" (click)="removeUser()">
+      <img src="assets/images/delete-icon.png" />
+    </button>
+  </div>
+
+  <div *ngIf="isEmpty; else other_template">+</div>
+  <ng-template #other_template>
+    <label>Nom</label>
+    <input class="form-control" [value]="user.nom" disabled />
+    <label>Prénom</label>
+    <input class="form-control" [value]="user.prenom" disabled />
+    <label>Nombre d'enfants</label>
+    <input
+      type="number"
+      class="form-control"
+      [value]="user.nombre_enfants"
+      (change)="updateUser($event.target.value)"
+    />
+  </ng-template>
+</div>
